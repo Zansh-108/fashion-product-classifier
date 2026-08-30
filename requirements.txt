@@ -1,0 +1,7 @@
+streamlit
+torch
+torchvision
+transformers
+pillow
+safetensors
+huggingface_hub

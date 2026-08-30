@@ -1,0 +1,6 @@
+fpcvit/
+__pycache__/
+*.pyc
+.env
+.vscode/
+model/*.pth
