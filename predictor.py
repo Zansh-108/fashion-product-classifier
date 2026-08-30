@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any
+from huggingface_hub import hf_hub_download
 
 import torch
 import torch.nn as nn
@@ -21,14 +22,34 @@ from transformers import (
 
 BASE_DIR = Path(__file__).resolve().parent
 
-MODEL_PATH = (
-    BASE_DIR
-    / "model"
-    / "class_weighted_vit_model.pth"
+# Uncomment this for local inference as I have uploaded the model into hugging face hub we can use it from there
+# MODEL_PATH = (
+#     BASE_DIR
+#     / "model"
+#     / "class_weighted_vit_model.pth"
+# )
+# ============================================================
+# MODEL SOURCE
+# ============================================================
+
+# Public Hugging Face repository containing our fine-tuned model
+HF_REPO_ID = "Zansh108/fashion-product-classifier-vit"
+HF_FILENAME = "class_weighted_vit_model.pth"
+
+# Download/cache the model from Hugging Face Hub.
+# hf_hub_download() returns the local cached file path.
+MODEL_PATH = Path(
+    hf_hub_download(
+        repo_id=HF_REPO_ID,
+        filename=HF_FILENAME,
+    )
 )
 
+print(f"✅ Model cached at: {MODEL_PATH}")
 VIT_MODEL_NAME = "google/vit-base-patch16-224"
 CLIP_MODEL_NAME = "openai/clip-vit-base-patch32"
+
+
 
 TOP_K = 4
 

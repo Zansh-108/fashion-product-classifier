@@ -1,7 +1,7 @@
-streamlit
-torch
+streamlit==1.62.0
+torch==2.13.0
 torchvision
-transformers
+transformers==5.16.1
 pillow
 safetensors
 huggingface_hub
